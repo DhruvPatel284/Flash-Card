@@ -19,15 +19,19 @@ model Flashcard {
   answer    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  admin     User     @relation(fields: [adminId], references: [id])
+  adminId   String
 }
 
 model User {
-  id        String      @id @default(uuid())
-  email     String   @unique
+  id        String     @id @default(uuid())
+  email     String     @unique
   password  String
-  role      Role     @default(USER)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  role      Role       @default(USER)
+  flashcards Flashcard[] 
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
 }
 
 enum Role {
