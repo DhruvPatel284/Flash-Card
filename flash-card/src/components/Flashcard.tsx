@@ -1,5 +1,5 @@
-"use client";
-import React from 'react';
+// components/Flashcard.tsx
+import React, { useState } from 'react';
 
 interface FlashcardProps {
   question: string;
@@ -7,22 +7,29 @@ interface FlashcardProps {
 }
 
 const Flashcard: React.FC<FlashcardProps> = ({ question, answer }) => {
-  const [isFlipped, setIsFlipped] = React.useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
 
   return (
-    <div>
-        <div className="w-72 h-48 bg-transparent border border-gray-300 perspective-1000">
-        <div className="relative w-full h-full text-center transition-transform duration-700 transform-style-preserve-3d group-hover:transform-rotate-y-180">
-            <div className="absolute w-full h-full bg-gray-400 text-black backface-hidden">
-            <img src="img_avatar.png" alt="Avatar" className="w-full h-full" />
-            </div>
-            <div className="absolute w-full h-full bg-blue-500 text-white transform-rotate-y-180 backface-hidden flex flex-col justify-center items-center">
-            <h1>John Doe</h1>
-            <p>Architect & Engineer</p>
-            <p>We love that guy</p>
-            </div>
+    <div
+      className="perspective-1000 w-full max-w-sm mx-auto my-4"
+      onClick={() => setIsFlipped(!isFlipped)}
+    >
+      <div
+        className={`relative w-full h-64 bg-white shadow-lg rounded-lg cursor-pointer transition-transform duration-500 transform-style-preserve-3d ${
+          isFlipped ? 'rotate-y-180' : ''
+        }`}
+      >
+        <div className="absolute w-full h-full backface-hidden">
+          <div className={`p-6 text-center flex items-center justify-center h-full rounded-lg bg-blue-600 text-white overflow-auto ${isFlipped ? 'opacity-0' : 'opacity-100'}`}>
+            <h3 className="text-lg font-bold">{question}</h3>
+          </div>
         </div>
+        <div className="absolute w-full h-full backface-hidden rotate-y-180">
+          <div className={`p-6 text-center flex items-center justify-center h-full rounded-lg bg-blue-800 text-white overflow-auto ${isFlipped ? 'opacity-100' : 'opacity-0'}`}>
+            <p className="text-lg">{answer}</p>
+          </div>
         </div>
+      </div>
     </div>
   );
 };
