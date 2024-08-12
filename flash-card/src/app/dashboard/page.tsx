@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Flashcard } from "@/utils/types"; 
 import { isAuthenticated } from "@/components/Navbar";
-
+import Navbar from "@/components/Navbar";
 export default function Dashboard() {
   const [flashcards, setFlashcards] = useState<Flashcard[]>([]);
   const [editCard, setEditCard] = useState<Flashcard | null>(null);
@@ -59,13 +59,15 @@ export default function Dashboard() {
   };
 
   return (
+    <div className="h-full bg-black min-h-[800px]">
+    <Navbar/>
     <div className="p-6">
-      <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
+      <h1 className="text-3xl text-slate-500 font-bold mb-4 text-center">Admin Dashboard</h1>
       <div className="space-y-4">
         {flashcards.map(flashcard => (
-          <div key={flashcard.id} className="border p-4 rounded-md">
+          <div key={flashcard.id} className="border p-4 border-slate-500 rounded-md">
             <div className="flex justify-between items-center mb-2">
-              <h2 className="text-xl font-semibold">{flashcard.question}</h2>
+              <h2 className="text-xl font-semibold text-purple-800">Question : {flashcard.question}</h2>
               <button
                 onClick={() => handleDelete(flashcard.id)}
                 className="text-red-500 hover:text-red-700"
@@ -73,22 +75,23 @@ export default function Dashboard() {
                 Delete
               </button>
             </div>
-            <p className="mb-2">{flashcard.answer}</p>
+            <p className="mb-2 text-purple-800">Answer : {flashcard.answer}</p>
             <button
               onClick={() => {
                 setEditCard(flashcard);
                 setIsUpdating(true);
               }}
-              className="text-blue-500 hover:text-blue-700"
+              className="text-green-600"
             >
               Update
             </button>
           </div>
         ))}
+        
       </div>
       {isUpdating && editCard && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
+        <div className="fixed inset-0  bg-gray-800 bg-opacity-50 flex justify-center items-center">
+          <div className="bg-green-500  p-6 rounded-lg w-1/3">
             <h2 className="text-xl font-semibold mb-4">Update Flashcard</h2>
             <input
               type="text"
@@ -120,6 +123,7 @@ export default function Dashboard() {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 }

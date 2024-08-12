@@ -52,22 +52,21 @@ export const Navbar = () => {
   };
 
   const handleLogout = async () => {
-    // Add logic to handle logout if necessary
-    // e.g., remove token from cookies or invalidate session
+    const responce = await axios.get("/api/Admin/signout")
     setIsLoggedIn(false);
     setUsername('');
     setIsAdmin(false);
   };
 
   return (
-    <nav className="p-4 w-full shadow-md shadow-slate-100">
+    <nav className="p-4 w-full shadow-md shadow-purple-800">
       <div className="container mx-auto flex items-center justify-between">
-        <Link href="/blogs" className="text-black text-xl font-semibold items-center ml-3 flex">
+        <Link href="/" className="text-black text-xl font-semibold items-center ml-3 flex">
           <div className='h-[30px] mr-2'>
             <img className='rounded h-[30px]' src="../images/articlenew.jpg" alt="" />
           </div>
-          <div className="text-2xl text-slate-800">
-            Flash-Card
+          <div className="text-2xl text-purple-600">
+              Flash-Card
           </div>
         </Link>
         <div className="flex items-center justify-center space-x-4">
@@ -76,7 +75,7 @@ export const Navbar = () => {
               {isAdmin && (
                 <Link
                   href="/publish"
-                  className="mr-4 text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 transition duration-150 ease-in-out"
+                  className="mr-4 text-black bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 transition duration-150 ease-in-out"
                 >
                   New
                 </Link>
@@ -86,7 +85,7 @@ export const Navbar = () => {
                   <Avatar size={"big"} name={username} />
                 </button>
                 {dropdownVisible && (
-                  <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition-transform transform duration-200 origin-top-right">
+                  <div className="absolute right-0 mt-2 w-48 mr-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition-transform transform duration-200 origin-top-right">
                     <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                       {isAdmin && (
                         <Link
@@ -97,9 +96,10 @@ export const Navbar = () => {
                          Dashboard
                         </Link>
                       )}
+                      <div className='h-[0.1px] bg-black'></div>
                       <button
                         onClick={handleLogout}
-                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition duration-150 ease-in-out"
+                        className="block w-full text-left px-4 py-2 text-sm text-red-700 hover:bg-gray-100 hover:text-gray-900 transition duration-150 ease-in-out"
                         role="menuitem"
                       >
                         Log Out
@@ -112,7 +112,7 @@ export const Navbar = () => {
           ) : (
             <Link
               href="/signin"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 transition duration-150 ease-in-out"
+              className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 transition duration-150 ease-in-out"
             >
               Log in
             </Link>
