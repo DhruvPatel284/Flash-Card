@@ -27,7 +27,7 @@ const Flashcard: React.FC<FlashcardProps> = ({ question, answer,isFlipped}) => {
         
       </div>
       <div className="absolute w-full h-full backface-hidden rotate-y-180 overflow-auto">
-        <div className={`p-6 text-center flex items-center justify-center h-full rounded-lg bg-black text-purple-600  ${IsFlipped ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`p-6 pt-8 text-center flex items-center justify-center h-full rounded-lg bg-black text-purple-600  ${IsFlipped ? 'opacity-100' : 'opacity-0'}`}>
           <p className="text-lg ">{answer}</p>
         </div>
       </div>
@@ -37,3 +37,5 @@ const Flashcard: React.FC<FlashcardProps> = ({ question, answer,isFlipped}) => {
 };
 
 export default Flashcard;
+
+

@@ -73,12 +73,20 @@ export const Navbar = () => {
           {isLoggedIn ? (
             <>
               {isAdmin && (
+                <div className='flex'>
                 <Link
                   href="/publish"
                   className="mr-4 text-black bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 transition duration-150 ease-in-out"
                 >
                   New
                 </Link>
+                  <Link
+                   href="/dashboard"
+                   className="mr-4 text-black bg-blue-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 transition duration-150 ease-in-out"
+                   >
+                     Dashboard
+                  </Link>
+                  </div>
               )}
               <div className="">
                 <button onClick={toggleDropdown} className="focus:outline-none mb-2">
