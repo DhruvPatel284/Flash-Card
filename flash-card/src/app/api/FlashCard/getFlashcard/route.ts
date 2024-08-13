@@ -14,7 +14,7 @@
 
 import prismadb from "@/lib/prismadb";
 import { NextResponse } from "next/server";
-
+export const dynamic = 'force-dynamic';
 // Disable caching for this API route
 export const fetchCache = 'force-no-store';
 
