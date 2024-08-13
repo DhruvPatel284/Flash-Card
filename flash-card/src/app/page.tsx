@@ -18,16 +18,25 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     // Fetch flashcards from API
+    // const fetchFlashcards = async () => {
+    //   try {
+    //     const response = await axios.get('/api/FlashCard/getFlashcard'); // Adjust the endpoint as needed
+    //     console.log(response)
+    //     setFlashcards(response.data);
+    //   } catch (error) {
+    //     console.error('Error fetching flashcards', error);
+    //   }
+    // };
     const fetchFlashcards = async () => {
       try {
-        const response = await axios.get('/api/FlashCard/getFlashcard'); // Adjust the endpoint as needed
-        console.log(response)
+        const response = await axios.get(`/api/FlashCard/getFlashcard?timestamp=${new Date().getTime()}`);
+        console.log(response);
         setFlashcards(response.data);
       } catch (error) {
         console.error('Error fetching flashcards', error);
       }
     };
-
+    
     fetchFlashcards();
   }, []);
 
