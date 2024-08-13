@@ -33,10 +33,6 @@ export const Auth = ({ type }: AuthProps) => {
       alert("An error occurred while signing in");
     }
   }
-   
-  useEffect(()=>{
-
-  })
 
   return (
     <div className="h-screen flex justify-center flex-col">
