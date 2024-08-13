@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Flashcard } from "@/utils/types"; 
-import { isAuthenticated } from "@/components/Navbar";
-import Navbar from "@/components/Navbar";
+import Navbar, { isAuthenticated } from "@/components/Navbar";
+
 export default function Dashboard() {
   const [flashcards, setFlashcards] = useState<Flashcard[]>([]);
   const [editCard, setEditCard] = useState<Flashcard | null>(null);
@@ -17,9 +17,6 @@ export default function Dashboard() {
         if (!response || response.status !== 200) {
           return;
         }
-        // console.log(response.data)
-        // const { userId } = response.data.userId;
-        // console.log("Fetching flashcards for AdminId:", userId);
         const resp = await axios.post(`/api/Admin/getFlash`, {
           AdminId: response.data.user.userId 
         });
@@ -90,38 +87,39 @@ export default function Dashboard() {
         
       </div>
       {isUpdating && editCard && (
-        <div className="fixed inset-0  bg-gray-800 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-green-500  p-6 rounded-lg w-1/3">
-            <h2 className="text-xl font-semibold mb-4">Update Flashcard</h2>
-            <input
-              type="text"
-              value={editCard.question}
-              onChange={(e) => setEditCard({ ...editCard, question: e.target.value })}
-              className="border p-2 mb-4 w-full rounded-md"
-              placeholder="Question"
-            />
-            <textarea
-              value={editCard.answer}
-              onChange={(e) => setEditCard({ ...editCard, answer: e.target.value })}
-              className="border p-2 mb-4 w-full rounded-md"
-              placeholder="Answer"
-            />
-            <div className="flex justify-end space-x-2">
-              <button
-                onClick={() => setIsUpdating(false)}
-                className="bg-gray-500 text-white px-4 py-2 rounded-md"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleUpdate}
-                className="bg-blue-500 text-white px-4 py-2 rounded-md"
-              >
-                Update
-              </button>
-            </div>
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center p-4 sm:p-8">
+        <div className="bg-green-500 p-4 sm:p-8 rounded-lg w-full sm:w-1/3 md:w-1/2 lg:w-1/3">
+          <h2 className="text-lg sm:text-xl font-semibold mb-4">Update Flashcard</h2>
+          <input
+            type="text"
+            value={editCard.question}
+            onChange={(e) => setEditCard({ ...editCard, question: e.target.value })}
+            className="border p-2 mb-4 w-full rounded-md"
+            placeholder="Question"
+          />
+          <textarea
+            value={editCard.answer}
+            onChange={(e) => setEditCard({ ...editCard, answer: e.target.value })}
+            className="border p-2 mb-4 w-full rounded-md"
+            placeholder="Answer"
+          />
+          <div className="flex justify-end space-x-2">
+            <button
+              onClick={() => setIsUpdating(false)}
+              className="bg-gray-500 text-white px-4 py-2 rounded-md"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleUpdate}
+              className="bg-blue-500 text-white px-4 py-2 rounded-md"
+            >
+              Update
+            </button>
           </div>
         </div>
+      </div>
+      
       )}
     </div>
     </div>
