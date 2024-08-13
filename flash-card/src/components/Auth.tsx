@@ -13,7 +13,7 @@ export const Auth = ({ type }: AuthProps) => {
   const navigate = useRouter();
   const [postInputs, setPostInputs] = useState({
     email: "",
-    password: "",  // Only used for signup
+    password: "",  
   });
 
   async function sendRequest() {
@@ -58,7 +58,7 @@ export const Auth = ({ type }: AuthProps) => {
           <div className="pt-8">
             <LabelledInput
               label="Email"
-              placeholder="example@example.com"
+              placeholder="example@admin.com"
               onChange={(e) =>
                 setPostInputs({
                   ...postInputs,
@@ -69,7 +69,7 @@ export const Auth = ({ type }: AuthProps) => {
             <LabelledInput
               label="Password"
               type="password"
-              placeholder="123456"
+              placeholder="admin"
               onChange={(e) =>
                 setPostInputs({
                   ...postInputs,
@@ -87,6 +87,12 @@ export const Auth = ({ type }: AuthProps) => {
           </div>
         </div>
       </div>
+      <div className="flex justify-center">
+        <p className="text-sm text-slate-500 mt-4">
+                To log in as an admin, use <strong>email: yourname@admin.com</strong> and <strong>password: admin</strong>.
+        </p>
+      </div>
+     
     </div>
   );
 };
