@@ -30,7 +30,7 @@ const Home: React.FC = () => {
     const fetchFlashcards = async () => {
       try {
         // const response = await axios.get(`/api/FlashCard/getFlashcard?timestamp=${new Date().getTime()}`);
-        const response = await axios.get(`https://flash-card-pi.vercel.app/api/FlashCard/getFlashcard`);
+        const response = await axios.get(`/api/FlashCard/getFlashcard`);
         console.log(response);
         setFlashcards(response.data);
       } catch (error) {
